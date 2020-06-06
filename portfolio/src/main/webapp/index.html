@@ -7,42 +7,45 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <div id="navigation-bar">
-      <nav>
-          <a href="background.html">Background</a>
-          <a href="projects.html">Projects</a>
-          <a>Image Gallery</a>
-          <a href="blog_posts.html">Blog Posts</a>
-      </nav>
-    </div>
+      <ul id="navigation-bar">
+          <a class="navigation-bar-items" href="index.html">Home</a>
+          <a class="navigation-bar-items" href="background.html">Background</a>
+          <a class="navigation-bar-items" href="projects.html">Projects</a>
+          <a class="navigation-bar-items" href="image_gallery.html">Image Gallery</a>
+          <a class="navigation-bar-items" href="blog_posts.html">Blog Posts</a>
+      </ul>
     <div id="content">
-      <h1>Gracie's Portfolio</h1>
-      <img width="200px" height="200px" src="/images/image.jpg"/>
-      <p>
-          I have currently finished my second year studying Computer Science at
-          California State University, Fullerton. I love learning in general and
-          have a passion for technology. My early exposure of computers has led
-          me to take classes throughout junior high, high school, and college.
-          The never ending growth of technology inspires me to learn more about
-          how and why it works. Currently, I am working on multiple jobs,
-          projects, and extracurriculars related to my major.
-      </p>
-      <h2>LinkedIn and Github</h2>
-      <p>
-          LinkedIn:
-          <a href="https://www.linkedin.com/in/graciela-orozco/">
-            https://www.linkedin.com/in/graciela-orozco/
-          </a>
-      </p>
-      <p>
-          Github:
-          <a href="https://github.com/gracieorozco">
-            https://github.com/gracieorozco
-          </a>
-      </p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+        <div id="index-left">
+            <h1>Gracie's Portfolio</h1>
+            <img width="200px" height="200px" src="/images/image.jpg"/>
+        </div>
+        <div id="index-right">
+            <p>
+                I have currently finished my second year studying Computer Science at
+                California State University, Fullerton. I love learning in general and
+                have a passion for technology. My early exposure of computers has led
+                me to take classes throughout junior high, high school, and college.
+                The never ending growth of technology inspires me to learn more about
+                how and why it works. Currently, I am working on multiple jobs,
+                projects, and extracurriculars related to my major.
+            </p>
+            <h2>LinkedIn and Github</h2>
+            <p>
+                LinkedIn:
+                <a href="https://www.linkedin.com/in/graciela-orozco/">
+                    https://www.linkedin.com/in/graciela-orozco/
+                </a>
+            </p>
+            <p>
+                Github:
+                <a href="https://github.com/gracieorozco">
+                    https://github.com/gracieorozco
+                </a>
+            </p>
+            <p>Click here to get a random message:</p>
+            <button onclick="addRandomGreeting()">Hello</button>
+            <div id="greeting-container"></div>
+        </div>
     </div>
   </body>
 </html>
