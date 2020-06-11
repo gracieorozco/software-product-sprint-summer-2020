@@ -29,6 +29,12 @@ function addRandomGreeting() {
 
 function fetchMessage() {
     fetch("/data").then(request => request.text()).then((textResponse) => {
-        document.getElementById("message-container").innerText = textResponse;
+        var text = textResponse.substring(1, textResponse.length-2).split(',')
+        console.log(text[0]);
+        for (var i = 0; i < 3; i++) {
+            var paragraph_tag = document.createElement("p");
+            paragraph_tag.innerText = text[i].substring(1, text[i].length-1);
+            document.getElementById("message-container").appendChild(paragraph_tag);
+        }
     });
 }
