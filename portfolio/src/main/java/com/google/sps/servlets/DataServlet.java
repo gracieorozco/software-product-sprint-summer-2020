@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -36,7 +35,7 @@ public class DataServlet extends HttpServlet {
     messageArrayList.add("This function uses a WebServlet in Java.");
     response.setContentType("application/json");
     Gson gson = new Gson();
-    String message_json = gson.toJson(messageArrayList);
-    response.getWriter().println(message_json);
+    String messageJson = gson.toJson(messageArrayList);
+    response.getWriter().println(messageJson);
   }
 }

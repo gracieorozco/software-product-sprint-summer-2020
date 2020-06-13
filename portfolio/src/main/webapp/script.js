@@ -13,27 +13,25 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Adds a random fact to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function addRandomFact() {
+  const facts =
+      ['I major in computer science.', 'I am learning new langauges.', 'I have traveled to over 30 states.'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  // Pick a random fact.
+  const fact = facts[Math.floor(Math.random() * facts.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const factContainer = document.getElementById('fact-container');
+  factContainer.innerText = fact;
 }
 
 function fetchMessage() {
-    fetch("/data").then(request => request.text()).then((textResponse) => {
-        var text = textResponse.substring(1, textResponse.length-2).split(',')
-        console.log(text[0]);
+    fetch("/data").then(request => request.json()).then((textResponse) => {
         for (var i = 0; i < 3; i++) {
             var paragraph_tag = document.createElement("p");
-            paragraph_tag.innerText = text[i].substring(1, text[i].length-1);
+            paragraph_tag.innerText = textResponse[i];
             document.getElementById("message-container").appendChild(paragraph_tag);
         }
     });
