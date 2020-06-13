@@ -27,12 +27,12 @@ function addRandomFact() {
   factContainer.innerText = fact;
 }
 
-function fetchMessage() {
+function fetchComments() {
     fetch("/data").then(request => request.json()).then((textResponse) => {
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < textResponse.length; i++) {
             var paragraph_tag = document.createElement("p");
-            paragraph_tag.innerText = textResponse[i];
-            document.getElementById("message-container").appendChild(paragraph_tag);
+            paragraph_tag.innerText = textResponse[i]['comment'];
+            document.getElementById("comments-container").appendChild(paragraph_tag);
         }
     });
 }

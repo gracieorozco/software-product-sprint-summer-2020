@@ -14,7 +14,14 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
@@ -26,26 +33,37 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  ArrayList<String> messageArrayList = new ArrayList<String>();
+  ArrayList<Comment> commentArrayList = new ArrayList<Comment>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query commentQuery = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery commentResults = datastore.prepare(commentQuery);
+    for (Entity comment : commentResults.asIterable()) {
+        String comment_text = (String) comment.getProperty("comment");
+        long timestamp = (long) comment.getProperty("timestamp");
+        Comment comment_object = new Comment(comment_text, timestamp);
+        commentArrayList.add(comment_object);
+    }
     response.setContentType("application/json");
     Gson gson = new Gson();
-    String messageJson = gson.toJson(messageArrayList);
-    response.getWriter().println(messageJson);
+    String commentJson = gson.toJson(commentArrayList);
+    response.getWriter().println(commentJson);
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = request.getParameter("comment-input");
+    long timestamp = System.currentTimeMillis();
     if (comment == null) {
         comment = "There was nothing inputted in the text area.";
     }
-    messageArrayList.add(comment);
-    response.setContentType("application/json");
-    Gson gson = new Gson();
-    String messageComments = gson.toJson(messageArrayList);
-    response.getWriter().println(messageComments);
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("timestamp", timestamp);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+    response.sendRedirect("/");
   }
 }
