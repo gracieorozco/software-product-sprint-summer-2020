@@ -28,7 +28,11 @@ function addRandomFact() {
 }
 
 function fetchMessage() {
-    fetch("/data").then(request => request.text()).then((textResponse) => {
-        document.getElementById("message-container").innerText = textResponse;
+    fetch("/data").then(request => request.json()).then((textResponse) => {
+        for (var i = 0; i < 3; i++) {
+            var paragraph_tag = document.createElement("p");
+            paragraph_tag.innerText = textResponse[i];
+            document.getElementById("message-container").appendChild(paragraph_tag);
+        }
     });
 }
