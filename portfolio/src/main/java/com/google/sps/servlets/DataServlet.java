@@ -39,13 +39,12 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = request.getParameter("comment-input");
-    if (comment == null) {
-        comment = "There was nothing inputted in the text area.";
+    if (comment.length() > 0) {
+        messageArrayList.add(comment);
+        response.setContentType("application/json");
+        Gson gson = new Gson();
+        String messageComments = gson.toJson(messageArrayList);
+        response.getWriter().println(messageComments);
     }
-    messageArrayList.add(comment);
-    response.setContentType("application/json");
-    Gson gson = new Gson();
-    String messageComments = gson.toJson(messageArrayList);
-    response.getWriter().println(messageComments);
   }
 }
