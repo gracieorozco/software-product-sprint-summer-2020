@@ -40,11 +40,11 @@ public class DataServlet extends HttpServlet {
     Query commentQuery = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery commentResults = datastore.prepare(commentQuery);
-    for (Entity comment : commentResults.asIterable()) {
-        String comment_text = (String) comment.getProperty("comment");
-        long timestamp = (long) comment.getProperty("timestamp");
-        Comment comment_object = new Comment(comment_text, timestamp);
-        commentArrayList.add(comment_object);
+    for (Entity commentEntity : commentResults.asIterable()) {
+        String commentText = (String) commentEntity.getProperty("comment");
+        long timestamp = (long) commentEntity.getProperty("timestamp");
+        Comment comment = new Comment(commentText, timestamp);
+        commentArrayList.add(comment);
     }
     response.setContentType("application/json");
     Gson gson = new Gson();

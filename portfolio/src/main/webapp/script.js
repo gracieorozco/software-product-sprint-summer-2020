@@ -30,9 +30,12 @@ function addRandomFact() {
 function fetchComments() {
     fetch("/data").then(request => request.json()).then((textResponse) => {
         for (var i = 0; i < textResponse.length; i++) {
-            var paragraph_tag = document.createElement("p");
-            paragraph_tag.innerText = textResponse[i]['comment'];
-            document.getElementById("comments-container").appendChild(paragraph_tag);
+            var paragraphTag = document.createElement("p");
+            paragraphTag.innerText = new Date(textResponse[i]['timestamp']);
+            document.getElementById("comments-container").appendChild(paragraphTag);
+            paragraphTag = document.createElement("p");
+            paragraphTag.innerText = textResponse[i]['comment'];
+            document.getElementById("comments-container").appendChild(paragraphTag);
         }
     });
 }
