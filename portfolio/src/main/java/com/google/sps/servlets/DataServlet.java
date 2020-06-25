@@ -30,12 +30,21 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    messageArrayList.add("This function uses a Java ArrayList.");
-    messageArrayList.add("This function uses a fetch() command in JavaScript.");
-    messageArrayList.add("This function uses a WebServlet in Java.");
     response.setContentType("application/json");
     Gson gson = new Gson();
     String messageJson = gson.toJson(messageArrayList);
     response.getWriter().println(messageJson);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String comment = request.getParameter("comment-input");
+    if (comment.length() > 0) {
+        messageArrayList.add(comment);
+        response.setContentType("application/json");
+        Gson gson = new Gson();
+        String messageComments = gson.toJson(messageArrayList);
+        response.getWriter().println(messageComments);
+    }
   }
 }
