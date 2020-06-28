@@ -23,6 +23,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/** 
+* The GraphsServlet retrieves data from the 
+* ElectricityByCounty.csv file in a LinkedHashMap
+* to be processed by the Google Charts library in 
+* JavaScript. 
+*/
 @WebServlet("/graph-data")
 public class GraphsServlet extends HttpServlet {
 
