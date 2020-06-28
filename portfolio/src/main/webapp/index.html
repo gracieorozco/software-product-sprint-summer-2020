@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="fetchComments()">
       <ul id="navigation-bar">
           <a class="navigation-bar-items" href="index.html">Home</a>
           <a class="navigation-bar-items" href="background.html">Background</a>
@@ -46,14 +46,14 @@
             <button onclick="addRandomFact()">Press</button>
             <div id="fact-container"></div>
             
-            <p>Click here to get a message from a servlet.</p>
-            <button onclick="fetchMessage()">Click</button>
-            <div id="message-container"></div>
-
+            <h2>Comments</h2>
+            <div id="comments-container"></div>
+            <br>
             <form action="/data" method="POST">
                 <textarea name="comment-input">Enter a comment</textarea>
                 <input type="submit"/>
             </form>
+            
         </div>
     </div>
   </body>

@@ -27,13 +27,16 @@ function addRandomFact() {
   factContainer.innerText = fact;
 }
 
-function fetchMessage() {
+function fetchComments() {
     fetch("/data").then(request => request.json()).then((textResponse) => {
-        var container = document.getElementById("message-container")
+        commentsContainer = document.getElementById("comments-container");
         for (var i = 0; i < textResponse.length; i++) {
-            var paragraph_tag = document.createElement("p");
-            paragraph_tag.innerText = textResponse[i];
-            container.appendChild(paragraph_tag);
+            var timestampParagraph = document.createElement("p");
+            timestampParagraph.innerText = new Date(textResponse[i]['timestamp']);
+            commentsContainer.appendChild(timestampParagraph);
+            var commentParagraph = document.createElement("p");
+            commentParagraph.innerText = textResponse[i]['comment'];
+            commentsContainer.appendChild(commentParagraph);
         }
     });
 }
