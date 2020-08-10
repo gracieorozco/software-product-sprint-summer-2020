@@ -61,8 +61,8 @@ public final class FindMeetingQuery {
 
         // If the last end time does not end with 1440, include a time ending from 1440 with the last end time. 
         if (endTimes.get(endTimes.size()-1) != TimeRange.WHOLE_DAY.duration()) {
-            timeRanges.add(TimeRange.fromStartEnd(endTimes.get(endTimes.size()-1), 1440, false));
-            result.add(TimeRange.fromStartEnd(endTimes.get(endTimes.size()-1), 1440, false));
+            timeRanges.add(TimeRange.fromStartEnd(endTimes.get(endTimes.size()-1), TimeRange.WHOLE_DAY.duration(), false));
+            result.add(TimeRange.fromStartEnd(endTimes.get(endTimes.size()-1), TimeRange.WHOLE_DAY.duration(), false));
         }
     } else {
         result.add(TimeRange.WHOLE_DAY);
